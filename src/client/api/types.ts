@@ -39,7 +39,7 @@ type PublishApi<TName extends ApiKind, TProvider extends BaseProvider<TName>> = 
 /**
  * Email
  */
-export type EmailOwner = "resend";
+export type EmailOwner = "resend" | "autosend";
 export type PublishEmailApi = Required<PublishApi<"email", BaseProvider<"email", EmailOwner>>>;
 
 /**

@@ -34,3 +34,19 @@ export const resend = ({
 }): EmailProvider => {
   return new EmailProvider("https://api.resend.com", token, "resend", batch);
 };
+
+class AutoSendEmailProvider extends EmailProvider {
+  getRoute(): string[] {
+    return this.batch ? ["v1", "mails", "bulk"] : ["v1", "mails", "send"];
+  }
+}
+
+export const autosend = ({
+  token,
+  batch = false,
+}: {
+  token: string;
+  batch?: boolean;
+}): EmailProvider => {
+  return new AutoSendEmailProvider("https://api.autosend.com", token, "autosend", batch);
+};
